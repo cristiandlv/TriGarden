@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#0b0b0b" rx="24"/>
+  <g transform="translate(60,60)">
+    <rect width="1080" height="360" rx="16" fill="url(#g2)" opacity="0.95" />
+    <text x="40" y="120" font-family="Arial, Helvetica, sans-serif" font-size="44" fill="#fff" font-weight="700">Tienda online optimizada</text>
+    <text x="40" y="180" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff">E-commerce, checkout seguro y rendimiento</text>
+  </g>
+  <g transform="translate(60,460)">
+    <rect width="320" height="200" rx="12" fill="#111" stroke="#222" />
+    <rect x="360" width="320" height="200" rx="12" fill="#111" stroke="#222" />
+    <rect x="720" width="320" height="200" rx="12" fill="#111" stroke="#222" />
+  </g>
+</svg>
