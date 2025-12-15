@@ -12,6 +12,7 @@ export default function Contact() {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -123,6 +124,18 @@ export default function Contact() {
                     {loading ? "Enviando..." : "Enviar mensaje"}
                   </button>
                 </div>
+                <p className="text-center text-xs text-gray-400 mt-3">
+  ¿Preferís otro canal?{" "}
+  <a
+    href={`https://wa.me/5492644399880?text=${whatsappMessage}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="underline hover:text-green-600 transition"
+  >
+    Escribinos por WhatsApp
+  </a>
+</p>
+
               </form>
             ) : (
               <div className="mt-12 flex flex-col items-center gap-4 text-center">

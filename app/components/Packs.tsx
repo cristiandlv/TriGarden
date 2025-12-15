@@ -12,6 +12,7 @@ const packs = [
       "Landing page profesional",
       "Diseño responsive",
       "Hasta 5 secciones optimizadas",
+      "Opción de mantenimiento y soporte",
     ],
   },
   {
@@ -22,6 +23,7 @@ const packs = [
       "Web corporativa completa",
       "CMS administrable",
       "Formularios y contacto",
+      "Opción de mantenimiento y soporte",
     ],
   },
   {
@@ -31,6 +33,7 @@ const packs = [
       "Tienda Nube o Empretienda",
       "Configuración estándar",
       "Carga inicial de productos",
+      "Opción de mantenimiento y soporte",
     ],
   },
   {
@@ -51,11 +54,14 @@ export default function Packs() {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">
           Soluciones y Packs
         </h2>
+    
 
         <p className="text-center text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-14">
           Diseñamos soluciones digitales adaptadas a distintos objetivos y
           niveles de complejidad.
         </p>
+
+        
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {packs.map((p, i) => (
@@ -129,7 +135,12 @@ export default function Packs() {
             </motion.article>
           ))}
         </div>
+        <p className="text-center text-sm text-gray-400 max-w-3xl mx-auto mb-10 mt-10">
+          Todos los packs incluyen <span className="font-medium text-gray-600 dark:text-gray-300">1 mes de mantenimiento y soporte sin cargo</span>.
+          Luego, el mantenimiento mensual es <span className="font-medium">opcional</span> según las necesidades del proyecto.
+        </p>
       </div>
+      
     </section>
   );
 }

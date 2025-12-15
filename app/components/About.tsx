@@ -16,7 +16,7 @@ export default function About() {
             </h2>
 
             <p className="mt-6 text-gray-300 leading-relaxed">
-              Trigarde es un estudio de desarrollo web especializado en crear
+              TriGarde es un estudio de desarrollo web especializado en crear
               sitios modernos, funcionales y preparados para crecer junto a cada
               proyecto.
             </p>
@@ -92,7 +92,7 @@ export default function About() {
 
                 <h4 className="font-semibold text-lg">Fausto</h4>
                 <p className="text-sm text-emerald-400 mb-3">
-                  Backend Developer
+                  Full Stack Developer
                 </p>
 
                 <p className="text-sm text-gray-400 leading-relaxed">
