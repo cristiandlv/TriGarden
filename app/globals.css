@@ -1,12 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  /* PRIMARY SITE BACKGROUND - change this variable to adjust site background color */
+  --background: #eef6ff; /* soft light blue that pairs well with green accents */
   --foreground: #171717;
   --accent: #16a34a; /* green-500 */
+  --section-bg: #ffffff; /* card/section background */
+  --card-border: rgba(2,6,23,0.06);
+  /* Header background: make it less harsh/white and more tonal with site background */
+  --header-bg: rgba(238,246,255,0.85); /* softer, slightly bluish white */
+  --header-border: rgba(2,6,23,0.03);
+  --background-accent: rgba(6,182,212,0.03);
 }
 
-@theme inline {
+/* Theme tokens (removed @theme at-rule for compatibility) */
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -16,7 +24,8 @@
 /* Dark theme tokens */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #070707;
+    /* Dark background adjusted to a deep blue that pairs with green accents */
+    --background: #071425; /* was #070707 (black) — changed to bluish dark */
     --foreground: #e6eef0;
     --accent: #22c55e; /* brighter green */
   }
@@ -28,23 +37,125 @@
       radial-gradient(600px 400px at 10% 10%, rgba(34,197,94,0.06), transparent 12%),
       radial-gradient(400px 300px at 90% 80%, rgba(6,182,212,0.04), transparent 10%),
       linear-gradient(180deg, rgba(255,255,255,0.02), transparent 40%),
-      linear-gradient(180deg, #050505, #0b0b0b);
+      linear-gradient(180deg, #041226, #071425);
     background-repeat: no-repeat;
     background-attachment: fixed;
     color: var(--foreground);
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  /* Dark mode header variables */
+  :root {
+    --header-bg: rgba(7,20,37,0.6);
+    --header-border: rgba(255,255,255,0.04);
   }
 }
 
 /* Light theme background - subtle */
 @media (prefers-color-scheme: light) {
   body {
+    /* Ensure default body uses the primary background variable */
     background-color: var(--background);
-    background-image:
-      radial-gradient(400px 300px at 10% 10%, rgba(34,197,94,0.02), transparent 8%),
-      linear-gradient(180deg, #ffffff, #fbfdff);
+      background-image:
+        radial-gradient(420px 320px at 8% 12%, rgba(34,197,94,0.02), transparent 6%),
+        radial-gradient(360px 260px at 92% 88%, rgba(6,182,212,0.03), transparent 6%),
+        linear-gradient(180deg, #fbfdff, #eef6ff);
     color: var(--foreground);
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+}
+
+/* Default body styles (applies when media queries are not matched) */
+body {
+  background-color: var(--background); /* primary site background */
+  color: var(--foreground);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Section card to visually contain content blocks */
+.section-card {
+  background-color: var(--section-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1.25rem;
+  padding: 1rem; /* default padding for small devices */
+  box-shadow: 0 14px 40px rgba(2,6,23,0.06);
+  transition: background-color .25s ease, box-shadow .25s ease, border-color .2s ease, transform .18s ease;
+  will-change: transform, box-shadow;
+}
+
+@media (prefers-color-scheme: dark) {
+  .section-card {
+    background-color: rgba(11,11,11,0.6);
+    border: 1px solid rgba(255,255,255,0.04);
+    box-shadow: 0 14px 40px rgba(2,6,23,0.6);
+  }
+}
+
+@media (min-width: 768px) {
+  .section-card { padding: 1.5rem }
+}
+
+.section-card:hover { transform: translateY(-4px); box-shadow: 0 22px 50px rgba(2,6,23,0.08) }
+
+/* Header / Navbar cohesion with cards */
+.site-header {
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  /* Ensure header always stacks above transformed content */
+  z-index: 9999;
+  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .12s ease;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+}
+
+.nav-link {
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.5rem;
+  color: inherit;
+  transition: background-color .18s ease, transform .12s ease, color .12s ease;
+}
+.nav-link:hover {
+  background-color: rgba(2,6,23,0.035);
+  transform: translateY(-1px);
+}
+.nav-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(34,197,94,0.08);
+}
+
+/* Smooth background transition for the whole page */
+body {
+  transition: background-color .25s ease, color .15s ease;
+}
+
+/* Ensure anchored sections are scrolled into view below the sticky header */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 104px; /* increased by two extra increments to further offset anchors */
+}
+
+@media (min-width: 768px) {
+  html { scroll-padding-top: 120px; }
+}
+
+/* Enhance page background depth to avoid flat look */
+/* Use extra radial layers and a subtle texture line */
+@media (prefers-color-scheme: light) {
+  body {
+    background-image:
+      radial-gradient(520px 360px at 6% 10%, rgba(34,197,94,0.02), transparent 6%),
+      radial-gradient(420px 300px at 92% 86%, rgba(6,182,212,0.02), transparent 6%),
+      linear-gradient(180deg, rgba(255,255,255,0.9), rgba(238,246,255,0.95)),
+      repeating-linear-gradient(45deg, rgba(0,0,0,0.00) 0 6px, rgba(0,0,0,0.002) 6px 8px);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-image:
+      radial-gradient(520px 360px at 6% 10%, rgba(34,197,94,0.03), transparent 6%),
+      radial-gradient(420px 300px at 92% 86%, rgba(6,182,212,0.04), transparent 6%),
+      linear-gradient(180deg, rgba(4,18,38,0.9), rgba(7,20,37,0.95));
   }
 }
 
@@ -67,5 +178,78 @@ a:focus, button:focus {
 input, textarea, select {
   background-color: transparent;
   border-radius: 0.75rem;
+}
+
+/* Hero specific helpers to improve composition and contrast */
+.hero-figure {
+  box-shadow: 0 20px 40px rgba(2,6,23,0.6), 0 6px 14px rgba(2,6,23,0.35);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+/* Responsive, professional hero title for good UI/UX */
+.hero-title {
+  font-size: clamp(1.6rem, 3.6vw, 2.6rem); /* mobile-first, scales smoothly */
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: clamp(2.25rem, 2.8vw, 3.75rem); /* more presence on larger screens but constrained */
+    letter-spacing: -0.018em;
+  }
+}
+
+/* Logo sizing helper used by Navbar */
+.nav-logo { width: 56px; height: 56px }
+
+/* Header adjustments for larger centered logo */
+.site-header {
+  padding-top: 0.35rem;
+  padding-bottom: 0.6rem;
+}
+
+@media (min-width: 768px) {
+  .site-header {
+    padding-top: 0.6rem;
+    padding-bottom: 0.8rem;
+  }
+}
+
+/* Make sure hero figure has a subtle overflow safe padding so the ribbon is visible */
+.hero-figure {
+  position: relative;
+  overflow: visible;
+}
+
+.hero-mockup {
+  border-radius: 1rem;
+  overflow: visible;
+}
+
+/* Slightly increase header min-height to comfortably fit larger logo */
+.site-header {
+  min-height: 96px; /* increased to match larger scroll offset */
+  overflow: visible; /* allow logo to visually overflow while keeping header compact */
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+
+@media (min-width: 768px) {
+  .site-header { min-height: 120px; padding-top: 0.25rem; padding-bottom: 0.25rem }
+}
+
+/* Social link focus/hover states */
+.social-link:focus {
+  outline: 3px solid rgba(34,197,94,0.18);
+  outline-offset: 3px;
+}
+.social-link:hover svg {
+  transform: translateY(-2px);
+}
+.social-link svg {
+  transition: transform 160ms ease, color 160ms ease;
 }
 

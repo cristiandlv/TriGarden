@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 
+import { FiCheck } from "react-icons/fi";
+
 const packs = [
   {
     title: "Pack Básico",
@@ -33,27 +35,27 @@ export default function Packs() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.12 * i }}
-              className="relative bg-gradient-to-b from-[#0b0b0b] to-[#0f0f0f] p-6 rounded-3xl shadow-lg border border-white/6 overflow-hidden"
+              className="relative bg-linear-to-b from-[#0b0b0b] to-[#0f0f0f] p-6 rounded-3xl shadow-lg border border-white/6 overflow-hidden"
             >
-              <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-green-400 via-purple-500 to-blue-400 opacity-10 blur-[12px]"></div>
-              <div className="relative">
-                <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
-                <p className="text-gray-400 mb-4">{p.desc.join(' • ')}</p>
+              <div className="absolute -inset-0.5 rounded-3xl bg-linear-to-r from-green-400 via-purple-500 to-blue-400 opacity-10 blur-md"></div>
+                <div className="relative">
+                  <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
+                  <p className="text-gray-400 mb-4">{p.desc.join(' • ')}</p>
 
-                <ul className="text-sm text-gray-300 mb-6 space-y-2">
-                  {p.desc.map((d) => (
-                    <li key={d} className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-green-400 block" />
-                      <span>{d}</span>
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="text-sm text-gray-700 dark:text-gray-300 mb-6 space-y-2">
+                    {p.desc.map((d) => (
+                      <li key={d} className="flex items-center gap-3">
+                        <FiCheck className="w-4 h-4 text-green-500" />
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                <div className="flex items-center justify-between">
-                  <div className="text-2xl font-bold">{p.price}</div>
-                  <a href="#contacto" className="px-4 py-2 bg-green-400 text-black rounded-lg font-semibold">Elegir</a>
+                  <div className="flex items-center justify-between">
+                    <div className="text-2xl font-bold">{p.price}</div>
+                    <a href="#contacto" className="px-4 py-2 bg-green-400 text-black rounded-lg font-semibold">Elegir</a>
+                  </div>
                 </div>
-              </div>
             </motion.article>
           ))}
         </div>
