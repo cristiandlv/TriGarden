@@ -1,4 +1,11 @@
-import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiNodedotjs, SiVercel } from "react-icons/si"; 
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiVercel,
+} from "react-icons/si";
 
 const tech = [
   { name: "React", Icon: SiReact },
@@ -13,10 +20,23 @@ export default function Technologies() {
   return (
     <section id="tecnologias" className="px-6 py-16">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8">Tecnologías que usamos</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-3">
+          Tecnologías que usamos
+        </h2>
+
+        <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-10">
+          Trabajamos con tecnologías modernas y probadas para garantizar
+          rendimiento, escalabilidad y una excelente experiencia de usuario.
+        </p>
+
         <div className="flex flex-wrap gap-4 justify-center">
           {tech.map(({ name, Icon }) => (
-            <div key={name} className="flex items-center gap-3 px-4 py-3 section-card rounded-lg text-gray-700 dark:text-gray-200">
+            <div
+              key={name}
+              className="flex items-center gap-3 px-4 py-3 section-card rounded-lg
+              text-gray-700 dark:text-gray-200
+              transition-transform hover:-translate-y-1"
+            >
               <Icon className="w-5 h-5 text-green-500" aria-hidden />
               <span className="font-medium">{name}</span>
             </div>

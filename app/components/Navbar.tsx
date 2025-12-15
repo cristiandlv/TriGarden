@@ -1,13 +1,17 @@
-"use client"
+"use client";
 
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import {
+  FiInstagram,
+  FiLinkedin,
+  FiFacebook,
+} from "react-icons/fi";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Simpler scroll effect: only toggle shadow when scrolled past threshold.
   useEffect(() => {
     function onScroll() {
       setScrolled(window.scrollY > 20);
@@ -19,37 +23,88 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 site-header transition-shadow duration-200 ${scrolled ? "shadow-md" : ""}`}
+      className={`sticky top-0 z-50 transition-shadow duration-200 ${
+        scrolled ? "shadow-md bg-white/80 dark:bg-black/20 backdrop-blur" : ""
+      }`}
       aria-label="Main navigation"
     >
       <div className="max-w-6xl mx-auto px-3 md:px-6">
-        <div className="w-full flex items-center justify-between py-3">
-          {/* Logo on the left for desktop; centered visually on small screens */}
-          <a href="#" className="flex items-center gap-3" aria-label="Inicio">
+        <div className="flex items-center justify-between py-3">
+          {/* LOGO */}
+          <a href="#" className="flex items-center" aria-label="Inicio">
             <div className="relative flex items-center h-32 md:h-40 transform -translate-y-1 md:-translate-y-2">
-              <Image src="/TriGarde.svg" alt="TriGarden" width={640} height={180} className="object-contain max-w-full h-32 md:h-40" />
+              <Image
+                src="/TriGarde.svg"
+                alt="TriGarde Studio"
+                width={640}
+                height={180}
+                className="object-contain max-w-full h-32 md:h-40"
+                priority
+              />
             </div>
           </a>
 
-          {/* Desktop menu on the right */}
+          {/* DESKTOP */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#packs" className="nav-link text-base font-medium text-gray-700 dark:text-gray-200">Packs</a>
-            <a href="#tecnologias" className="nav-link text-base font-medium text-gray-700 dark:text-gray-200">Tecnologías</a>
-            <a href="#nosotros" className="nav-link text-base font-medium text-gray-700 dark:text-gray-200">Nosotros</a>
-            <a href="#contacto" className="nav-link text-base font-medium text-gray-700 dark:text-gray-200">Contacto</a>
-            <a href="#contacto" className="ml-4 px-4 py-2 bg-gradient-to-r from-green-400 to-green-500 text-black rounded-md font-semibold shadow-sm hover:scale-[1.01] transition text-sm">Cotizar</a>
+            {/* LINKS */}
+            <div className="flex items-center gap-6">
+              <a href="#packs" className="nav-link">Packs</a>
+              <a href="#tecnologias" className="nav-link">Tecnologías</a>
+              <a href="#nosotros" className="nav-link">Nosotros</a>
+              <a href="#contacto" className="nav-link">Contacto</a>
+            </div>
+
+            {/* DIVIDER */}
+            <div className="h-6 w-px bg-gray-300/40 dark:bg-white/20" />
+
+            {/* SOCIAL */}
+            <div className="flex items-center gap-4 text-gray-500 dark:text-gray-300">
+              <a
+                href="www.instagram.com/trigarde.studio"
+                aria-label="Instagram"
+                className="hover:text-emerald-500 transition"
+              >
+                <FiInstagram className="w-5 h-5" />
+              </a>
+              <a
+                href="www.facebook.com/trigarde.studio"
+                aria-label="Facebook"
+                className="hover:text-blue-500 transition"
+              >
+                <FiFacebook className="w-5 h-5" />
+              </a>
+              <a
+                href="www.linkedin.com/company/trigarde"
+                aria-label="LinkedIn"
+                className="hover:text-blue-400 transition"
+              >
+                <FiLinkedin className="w-5 h-5" />
+              </a>
+            </div>
+
+            {/* CTA */}
+            <a
+              href="#contacto"
+              className="ml-2 px-4 py-2 bg-gradient-to-r from-green-400 to-green-500 text-black rounded-md font-semibold shadow-sm hover:scale-[1.03] transition text-sm"
+            >
+              Cotizar
+            </a>
           </div>
 
-          {/* Mobile hamburger on the right */}
+          {/* MOBILE BUTTON */}
           <div className="md:hidden">
             <button
               aria-label={open ? "Cerrar menú" : "Abrir menú"}
               aria-expanded={open}
               onClick={() => setOpen((s) => !s)}
-              className="p-2 rounded-md border border-black/10 dark:border-white/10 text-gray-700 dark:text-gray-200 bg-transparent hover:bg-black/5 dark:hover:bg-white/5 focus:outline-none focus:ring-4 focus:ring-green-200/60"
+              className="p-2 rounded-md border border-black/10 dark:border-white/10 text-gray-700 dark:text-gray-200 hover:bg-black/5 dark:hover:bg-white/5"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                <g stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <g
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                >
                   {open ? (
                     <>
                       <path d="M6 6l12 12" />
@@ -69,19 +124,33 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile panel: full-width, accessible, slides below header */}
-      <div className={`md:hidden transition-all duration-200 ${open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`} aria-hidden={!open}>
-        <div className="px-4 pb-4">
-          <div className="section-card p-4 flex flex-col gap-3 items-center">
-            {/* Show logo again in mobile panel for clarity, larger */}
-            <div className="mb-2">
-              <Image src="/TriGarde.svg" alt="TriGarden" width={480} height={140} className="object-contain h-24" />
+      {/* MOBILE PANEL */}
+      <div
+        className={`md:hidden transition-all duration-200 ${
+          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="px-4 pb-6">
+          <div className="rounded-xl border border-gray-200/10 bg-white/5 p-5 flex flex-col items-center gap-4">
+            <a href="#packs" onClick={() => setOpen(false)}>Packs</a>
+            <a href="#tecnologias" onClick={() => setOpen(false)}>Tecnologías</a>
+            <a href="#nosotros" onClick={() => setOpen(false)}>Nosotros</a>
+            <a href="#contacto" onClick={() => setOpen(false)}>Contacto</a>
+
+            <a
+              href="#contacto"
+              onClick={() => setOpen(false)}
+              className="mt-2 px-4 py-2 bg-gradient-to-r from-green-400 to-green-500 text-black rounded-md font-semibold w-full text-center"
+            >
+              Cotizar
+            </a>
+
+            {/* SOCIAL MOBILE */}
+            <div className="flex gap-6 pt-2 text-gray-400">
+              <FiInstagram className="w-5 h-5" />
+              <FiFacebook className="w-5 h-5" />
+              <FiLinkedin className="w-5 h-5" />
             </div>
-            <a href="#packs" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-200 text-base">Packs</a>
-            <a href="#tecnologias" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-200 text-base">Tecnologías</a>
-            <a href="#nosotros" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-200 text-base">Quiénes somos</a>
-            <a href="#contacto" onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-200 text-base">Contacto</a>
-            <a href="#contacto" onClick={() => setOpen(false)} className="mt-2 px-4 py-2 bg-gradient-to-r from-green-400 to-green-500 text-black rounded-lg font-semibold inline-block text-center">Cotizar</a>
           </div>
         </div>
       </div>
