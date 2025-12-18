@@ -33,7 +33,7 @@ export default function Navbar() {
           <a href="#" className="flex items-center justify-center w-full md:w-auto" aria-label="Inicio">
             <div className="relative flex items-center justify-center h-auto md:h-auto transform -translate-y-1 md:-translate-y-2">
               <img
-                src="/TriGarde_logo2.svg"
+                src="/TriGarde_logo3.svg"
                 alt="TriGarde Studio"
                 className="nav-logo mx-auto ml-[40px] md:ml-0"
                 decoding="async"
