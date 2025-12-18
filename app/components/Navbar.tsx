@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import {
   FiInstagram,
@@ -33,13 +32,12 @@ export default function Navbar() {
           {/* LOGO */}
           <a href="#" className="flex items-center" aria-label="Inicio">
             <div className="relative flex items-center h-32 md:h-40 transform -translate-y-1 md:-translate-y-2">
-              <Image
+              <img
                 src="/TriGarde_logo.svg"
                 alt="TriGarde Studio"
-                width={640}
-                height={180}
                 className="object-contain max-w-full h-32 md:h-40"
-                priority
+                decoding="async"
+                loading="eager"
               />
             </div>
           </a>
