@@ -1,3 +1,8 @@
+/* Quitar el borde/outline al hacer clic en el logo */
+a[aria-label="Inicio"]:focus {
+  outline: none;
+  box-shadow: none;
+}
 @import "tailwindcss";
 
 :root {
@@ -203,7 +208,25 @@ input, textarea, select {
 }
 
 /* Logo sizing helper used by Navbar */
-.nav-logo { width: 56px; height: 56px }
+.nav-logo {
+  display: block;
+  height: 56px;
+  width: auto;
+  max-width: 70vw;
+  margin-top: 13px;
+}
+
+@media (min-width: 400px) {
+  .nav-logo {
+    height: 68px;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-logo {
+    height: 86px;
+  }
+}
 
 /* Header adjustments for larger centered logo */
 .site-header {

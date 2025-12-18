@@ -30,14 +30,15 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-3 md:px-6">
         <div className="flex items-center justify-between py-3">
           {/* LOGO */}
-          <a href="#" className="flex items-center" aria-label="Inicio">
-            <div className="relative flex items-center h-32 md:h-40 transform -translate-y-1 md:-translate-y-2">
+          <a href="#" className="flex items-center justify-center w-full md:w-auto" aria-label="Inicio">
+            <div className="relative flex items-center justify-center h-auto md:h-auto transform -translate-y-1 md:-translate-y-2">
               <img
                 src="/TriGarde_logo.svg"
                 alt="TriGarde Studio"
-                className="object-contain max-w-full h-32 md:h-40"
+                className="nav-logo mx-auto ml-[40px] md:ml-0"
                 decoding="async"
                 loading="eager"
+                style={{ marginTop: '13px', display: 'block' }}
               />
             </div>
           </a>
